@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds8iwkks47h3w"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_ivfad"]
+[ext_resource type="PackedScene" uid="uid://ctiav3c1o0s1l" path="res://ship/ship.tscn" id="1_qoiq5"]
+[ext_resource type="Resource" uid="uid://cmccq26oi7icw" path="res://resources/game_stats/game_stats.tres" id="2_nld3n"]
+[ext_resource type="PackedScene" uid="uid://cjb1xsxyvpjs7" path="res://generators/enemy_generator.tscn" id="3_ecyun"]
+[ext_resource type="LabelSettings" uid="uid://cxqkihfabpk8j" path="res://fonts/default_label_settings.tres" id="3_me0mp"]
+[ext_resource type="PackedScene" uid="uid://cay8cqyafwgp7" path="res://enemies/green_enemy.tscn" id="4_rkvie"]
+[ext_resource type="PackedScene" uid="uid://bed0hp8bt73in" path="res://enemies/pink_enemy.tscn" id="8_0tk5d"]
+[ext_resource type="PackedScene" uid="uid://ds4vc0vuto5ff" path="res://enemies/yellow_enemy.tscn" id="8_opx8u"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_ivfad")
+game_stats = ExtResource("2_nld3n")
+
+[node name="Ship" parent="." instance=ExtResource("1_qoiq5")]
+position = Vector2(78, 220)
+
+[node name="GreenEnemyGenerator" parent="." instance=ExtResource("3_ecyun")]
+enemy_scene = ExtResource("4_rkvie")
+
+[node name="YellowEnemyGenerator" parent="." instance=ExtResource("3_ecyun")]
+enemy_scene = ExtResource("8_opx8u")
+wait_time = 5
+time_offset = 1.5
+
+[node name="PinkEnemyGenerator" parent="." instance=ExtResource("3_ecyun")]
+enemy_scene = ExtResource("8_0tk5d")
+wait_time = 8
+time_offset = 2.0
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 160.0
+offset_bottom = 10.0
+grow_horizontal = 2
+text = "Score: 0"
+label_settings = ExtResource("3_me0mp")
+horizontal_alignment = 1
+vertical_alignment = 1

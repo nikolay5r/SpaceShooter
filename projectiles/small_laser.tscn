@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://7syua40n7qm7"]
+
+[ext_resource type="Script" path="res://projectiles/small_laser.gd" id="1_edko7"]
+[ext_resource type="Texture2D" uid="uid://b70w6nwrfrod3" path="res://assets/laser_small.png" id="2_hd1l4"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_r85fl"]
+[ext_resource type="Script" path="res://components/flash_component.gd" id="4_m4yoh"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="5_4d007"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_g5ec4"]
+[ext_resource type="AudioStream" uid="uid://b8sbrb7fvb10" path="res://sounds/laser_sound.wav" id="7_y17ed"]
+[ext_resource type="Script" path="res://components/variable_pitch_audio_stream_player.gd" id="8_agvh3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10xhu"]
+size = Vector2(4, 8)
+
+[node name="SmallLaser" type="Node2D"]
+script = ExtResource("1_edko7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hd1l4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.90735e-07, 1)
+scale = Vector2(0.2, 0.4)
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("3_r85fl")
+actor = NodePath("..")
+velocity = Vector2(0, -150)
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_m4yoh")
+sprite = NodePath("../Sprite2D")
+flash_duration = 0.1
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_4d007")
+sprite = NodePath("../Sprite2D")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_g5ec4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_10xhu")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_y17ed")
+bus = &"Sounds"
+script = ExtResource("8_agvh3")
+auto_play_with_variance = true

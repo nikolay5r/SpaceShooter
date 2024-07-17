@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfbefepju2b8d"]
+
+[ext_resource type="LabelSettings" uid="uid://b37i5c1m5hjk4" path="res://fonts/title_label_settings.tres" id="1_a56qq"]
+[ext_resource type="Script" path="res://menus/start_menu.gd" id="1_iyvc1"]
+[ext_resource type="LabelSettings" uid="uid://cxqkihfabpk8j" path="res://fonts/default_label_settings.tres" id="2_8titx"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iyvc1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Pew pew"
+label_settings = ExtResource("1_a56qq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Keys" type="Label" parent="VBoxContainer/MoveHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "w,s,a,d
+"
+label_settings = ExtResource("2_8titx")
+
+[node name="Action" type="Label" parent="VBoxContainer/MoveHBoxContainer"]
+layout_mode = 2
+text = "Move
+"
+label_settings = ExtResource("2_8titx")
+horizontal_alignment = 1
+
+[node name="ShootHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Key" type="Label" parent="VBoxContainer/ShootHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Space
+"
+label_settings = ExtResource("2_8titx")
+
+[node name="Action" type="Label" parent="VBoxContainer/ShootHBoxContainer"]
+layout_mode = 2
+text = "Shoot
+"
+label_settings = ExtResource("2_8titx")
+horizontal_alignment = 1
+
+[node name="Space" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="PressSpace" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Press 'space' to play"
+label_settings = ExtResource("2_8titx")
+horizontal_alignment = 1
+vertical_alignment = 1
